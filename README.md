@@ -21,7 +21,7 @@ This package allows you to easily set up a development environment with three Do
 - Log into the server and cd into the project folder
 - Make three directories - one for logs, the other for MongoDB database files and the third for the public web
   ```console
-  mkdir mongodb-data && mkdir -p logs/nginx && mkdir web
+  $ mkdir mongodb-data && mkdir -p logs/nginx && mkdir web
   ```
 - if you are using a Mac and VirtualBox for testing and development, make the folder ```mkdir -p ../modules/{api,microsite}``` into the parent folder of the project. VirtualBox does not properly support linking via folder shares and this way node.js modules will be saved onto the virtual server instead of the host computer. docker-compose.yml already has these volume settings in place.
 - use docker-compose to build the containers.
