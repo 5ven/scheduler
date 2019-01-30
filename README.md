@@ -18,7 +18,13 @@ This package allows you to easily set up a development environment with three Do
 #### Setting up and developing
 - If you are using a Mac, set up VirtualBox and a Debian instance on it. As of January, 2019, Docker for Mac has issues with local networking. Use VirtualBox's folder share functionality to mount the project folder into the virtual Debian server.
 - Edit the hosts file on your local development computer and add the reference to the domain "scheduler" pointing to the local IP aadress of your VirtualBox instance or (virtual) Linux server.
-- Log into the server and "cd" into the project folder where the docker-compose.yml exists and user docker-compose to build the containers.
+- Log into the server and cd into the project folder
+- Make three directories - one for logs, the other for MongoDB database files and the third for the public web
+  ```console
+  mkdir mongodb-data && mkdir -p logs/nginx && mkdir web
+  ```
+- if you are using a Mac and VirtualBox for testing and development, make the folder ```mkdir -p ../modules/{api,microsite}``` into the parent folder of the project. VirtualBox does not properly support linking via folder shares and this way node.js modules will be saved onto the virtual server instead of the host computer. docker-compose.yml already has these volume settings in place.
+- use docker-compose to build the containers.
 
   ```$ docker-compose up -d```
 
@@ -56,8 +62,6 @@ This package allows you to easily set up a development environment with three Do
         password:'$2b$04$NDunia1zLBNH3ur1AWuUN.nBPeGAhxCd4b/95LRsRN6VvKq9y6fzK'
       })
   ```  
-- if you are using a Mac and VirtualBox for testing and development, make the folder ```mkdir -p ../modules/{api,microsite}``` into the parent folder of the project. VirtualBox does not properly support linking via folder shares and this way node.js modules will be saved onto the virtual server instead of the host computer. docker-compose.yml already has these volume settings in place.
-
 - add the .env file for the API into the folder api and define the following constants
   ```javascript
   MONGO_URI=mongodb://mongo/scheduler-devel
