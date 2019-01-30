@@ -1,0 +1,61 @@
+version: '2'
+
+services:
+  mongo:
+    user: "mongodb"
+    image: mongo:latest
+    volumes:
+      - ./mongodb-data:/data
+    ports:
+      - "27017:27017"
+    tty: true
+    command: mongod
+  api:
+    user: "root"
+    image: node:latest
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+      # https://tw.saowen.com/a/097837fac94163680f564644296e67b5d38ad9e98e36fae3f55b1bac7e68c07b
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./api:/home/node/app
+      - ../modules/api:/home/node/app/node_modules
+    ports:
+      - "3030:3030"
+    tty: true #keeps the container up
+    command: bash
+    restart: always
+    links:
+      - "mongo"
+  microsite:
+      user: "root"
+      image: node:latest
+      working_dir: /home/node/app
+      environment:
+        - NODE_ENV=development
+        - CHOKIDAR_USEPOLLING=true
+      volumes:
+        - ./microsite:/home/node/app
+        - ../modules/microsite:/home/node/app/node_modules
+      ports:
+        - "8080:8080"
+      tty: true #keeps the container up
+      restart: always
+      command: bash
+      links:
+        - "api"
+  nginx:
+      image: nginx:latest
+      ports:
+          - '80:80'
+  #        - '443:443'
+      volumes:
+  #        - ./etc/nginx/letsencrypt:/etc/letsencrypt
+          - ./etc/nginx/config:/etc/nginx/
+          - ./logs/nginx:/var/log/nginx
+          - ./web:/var/www/html
+      restart: always
+      links:
+        - "microsite"
+        - "api"

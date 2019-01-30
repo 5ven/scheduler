@@ -1,0 +1,73 @@
+{
+  "name": "scheduler-api",
+  "version": "0.0.1",
+  "description": "REST node backend API for scheduler powered by ES6 and Express",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && babel app -d build",
+    "clean": "rm -rf build && mkdir build",
+    "start": "nodemon",
+    "test": "NODE_ENV=test mocha --recursive --reporter spec --compilers js:babel-register tests",
+    "lint": "eslint app",
+    "test:watch": "nodemon --exec 'npm run test' tests",
+    "coverage": "NODE_ENV=test babel-node ./node_modules/.bin/isparta cover _mocha -- --recursive --reporter spec --compilers js:babel-register tests",
+    "validate": "npm run test && npm outdated --depth 0"
+  },
+  "engines": {
+    "node": ">= 6 <=10",
+    "npm": ">= 3"
+  },
+  "keywords": [
+    "express",
+    "es6",
+    "rest",
+    "api",
+    "mongo"
+  ],
+  "author": "Sven Kauber <sven.kauber@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-react-native": "^4.0.0",
+    "bcrypt": "^2.0.0",
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.14.0",
+    "express-validator": "^5.3.0",
+    "helmet": "^3.1.0",
+    "jsonwebtoken": "^7.1.0",
+    "lodash": "^4.16.4",
+    "mailgun-js": "^0.22.0",
+    "method-override": "^2.3.6",
+    "moment": "^2.23.0",
+    "mongoose": "^5.2.16",
+    "mongoose-ip-address": "^0.0.6",
+    "mongoose-sequence": "^4.0.1",
+    "mongoose-type-email": "^1.0.9",
+    "mongoose-unique-validator": "^2.0.2",
+    "morgan": "^1.7.0",
+    "multer": "^1.2.0",
+    "pug": "^2.0.0-rc.4",
+    "request-ip": "^2.0.2",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "babel-eslint": "^7.0.0",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "eslint": "^3.8.1",
+    "eslint-config-google": "^0.7.1",
+    "eslint-plugin-babel": "^4.0.0",
+    "faker": "^3.1.0",
+    "isparta": "^4.0.0",
+    "mocha": "^3.1.2",
+    "nodemon": "^1.11.0"
+  }
+}
