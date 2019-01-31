@@ -84,7 +84,7 @@ This package allows you to easily set up a development environment with three Do
         email: james@doe.com
         password: supersecUrepassword123
     ```
-   * Add the new sales team members. Be sure to save each user.id value from the response for every team member. You will need these for their personal URLs so that scheduling requests will be targeted to the right sales person. URLs will be in this format: http://scheduler/id/the-mongodb-id-fo-the-team-member
+   * Add the new sales team members. Be sure to save each user.id value from the response for every team member. You will need these for their personal URLs so that scheduling requests will be targeted to the right sales person. URLs will be in this format: http://<span></span>scheduler/id/the-mongodb-id-for-the-team-member
       ```
         Type: POST
         URL: http://scheduler/api/user
@@ -101,9 +101,12 @@ This package allows you to easily set up a development environment with three Do
       ```
 - You can use "yarn test" to run all the available tests in the API container.
 - Uses the <a href="https://github.com/webpack/webpack-dev-server/issues/882" target="_blank">disableHostCheck option in WebPack</a> because of a proxy and running locally. See ```microsite/build/webpack.dev.conf.js```.
-- the default user is "root" both for API and microsite and you might want to change to "node" after successfully setting up the app. Edit docker-compose.yml.
+- the default user is root both for API and microsite and you might want to change to node after successfully setting up the app. Edit docker-compose.yml.
     ```yml
     microsite:
+      user: "node"
+    . . .
+    api:
       user: "node"
     ```
     Then rebuild the container
@@ -130,5 +133,5 @@ This package allows you to easily set up a development environment with three Do
 
 - Modify ```etc/nginx/config/nginx.conf``` and add more ```worker_processes``` if needed.
 
-- <b>IMPORTANT!</b> Remember the issues Docker has with iptables! Either manually configure iptables after you have set up the containers or use a front-facing firewall possibly offered by your cloud service. Also remember to protect MongoDB from outside access by setting up a user and changing the API's configuration at ```app/config/constants.js``` (see environmentConfigs ->
-mongo -> uri). You might want to disable "disableHostCheck" for improved security. Do not run the daemons under the "root" user and set the user "node" instead.
+- <b>IMPORTANT!</b> Remember the issues Docker has with iptables. Either manually configure iptables after you have set up the containers or use a front-facing firewall possibly offered by your cloud service. Also remember to protect MongoDB from outside access by setting up a user and changing the API's configuration at ```app/config/constants.js``` (see environmentConfigs ->
+mongo -> uri). You might want to disable "disableHostCheck" for improved security. Do not run the daemons under the root user and set up the user node instead.
