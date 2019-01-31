@@ -84,21 +84,21 @@ This package allows you to easily set up a development environment with three Do
         email: james@doe.com
         password: supersecUrepassword123
     ```
-   * Add the new sales team members. Be sure to save each user.id value from the response for every team member. You will need these for their personal URLs so that scheduling requests will be targeted to the right sales person.
-    ```
-      Type: POST
-      URL: http://scheduler/api/user
-      Headers:
-        Content-Type: application/x-www-form-urlencoded
-        authorization: the-token-from-the-admin-auth-request
-      Body attributes:
-        name[first]: Jimmy
-        name[last]: Doe
-        email: jimmy@doe.com
-        password: somelongandsecurepassword
-        role: seller
-        skype: jimmy456565
-    ```
+   * Add the new sales team members. Be sure to save each user.id value from the response for every team member. You will need these for their personal URLs so that scheduling requests will be targeted to the right sales person. URLs will be in this format: http://scheduler/id/the-mongodb-id-fo-the-team-member
+      ```
+        Type: POST
+        URL: http://scheduler/api/user
+        Headers:
+          Content-Type: application/x-www-form-urlencoded
+          authorization: the-token-from-the-admin-auth-request
+        Body attributes:
+          name[first]: Jimmy
+          name[last]: Doe
+          email: jimmy@doe.com
+          password: somelongandsecurepassword
+          role: seller
+          skype: jimmy456565
+      ```
 - You can use "yarn test" to run all the available tests in the API container.
 - Uses the <a href="https://github.com/webpack/webpack-dev-server/issues/882" target="_blank">disableHostCheck option in WebPack</a> because of a proxy and running locally. See ```microsite/build/webpack.dev.conf.js```.
 - the default user is "root" both for API and microsite and you might want to change to "node" after successfully setting up the app. Edit docker-compose.yml.
