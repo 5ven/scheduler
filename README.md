@@ -137,6 +137,6 @@ This package allows you to easily set up a development environment with three Do
 mongo -> uri). You might want to disable "disableHostCheck" for improved security. Do not run the daemons under the root user and set up the user node instead.
 
 #### Todo
-- [ ] add semail sending tests with Docker-based installation of [MailHog](https://hub.docker.com/r/mailhog/mailhog )
-- [ ] write an in-depth article about setting up great workflow for using Docker on a Mac
+- [ ] add e-mail sending tests with Docker-based installation of [MailHog](https://hub.docker.com/r/mailhog/mailhog )
+- [ ] write an in-depth article about setting up a great workflow for using Docker on a Mac
 - [ ] write an automatic helper script for importing the initial users into MongoDB
