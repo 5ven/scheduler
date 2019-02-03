@@ -135,3 +135,8 @@ This package allows you to easily set up a development environment with three Do
 
 - <b>IMPORTANT!</b> Remember the issues Docker has with iptables. Either manually configure iptables after you have set up the containers or use a front-facing firewall possibly offered by your cloud service. Also remember to protect MongoDB from outside access by setting up a user and changing the API's configuration at ```app/config/constants.js``` (see environmentConfigs ->
 mongo -> uri). You might want to disable "disableHostCheck" for improved security. Do not run the daemons under the root user and set up the user node instead.
+
+#### Todo
+- [ ] add semail sending tests with Docker-based installation of [MailHog](https://hub.docker.com/r/mailhog/mailhog )
+- [ ] write an in-depth article about setting up great workflow for using Docker on a Mac
+- [ ] write an automatic helper script for importing the initial users into MongoDB
